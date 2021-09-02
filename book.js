@@ -42,6 +42,8 @@ const displayloadbook=(books)=>{
 
      if(books.length== 0){
          searchresult.innerText=" Sorry to say  wrong choice "
+         searchresult.style.color="red";
+         searchresult.style.paddingLeft="350px";
      }
      books.forEach(book => {
         //  console.log(book);
