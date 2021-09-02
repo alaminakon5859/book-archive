@@ -3,8 +3,26 @@ const loadBook=()=>{
     const searchfieldtex =searchfield.value ;
 
     searchfield.value="";
-    
-    
+   /*  error part */
+   const errorhandle =document.getElementById("error-handle");
+   errorhandle.textContent="";
+  if(searchfieldtex== "" ){
+    const h1 =document.createElement("h1");
+    h1.style.color="red";
+    h1.style.textAlign="center";
+    h1.innerText="sorry pls write something"
+    errorhandle.appendChild(h1);
+  }
+  else{
+    const url=`
+  https://openlibrary.org/search.json?q=${searchfieldtex}   
+  `;
+  fetch(url)
+  .then(res => res.json())
+  .then(data => displayloadbook(data.docs));
+  }
+
+  
     const url=`
     https://openlibrary.org/search.json?q=${searchfieldtex}   
     `;
@@ -20,6 +38,7 @@ const displayloadbook=(books)=>{
 
      const searchresult =document.getElementById("search-result");
      searchresult.innerText="";
+
 
      if(books.length== 0){
          searchresult.innerText=" Sorry to say  wrong choice "
