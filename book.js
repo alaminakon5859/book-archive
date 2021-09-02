@@ -3,7 +3,7 @@ const loadBook=()=>{
     const searchfieldtex =searchfield.value ;
 
     searchfield.value="";
-   /*  error part */
+   /*  error message 1*/
    const errorhandle =document.getElementById("error-handle");
    errorhandle.textContent="";
   if(searchfieldtex== "" ){
@@ -21,7 +21,7 @@ const loadBook=()=>{
   .then(res => res.json())
   .then(data => displayloadbook(data.docs));
   }
-
+/*  error message 1 end */
   
     const url=`
     https://openlibrary.org/search.json?q=${searchfieldtex}   
@@ -38,15 +38,16 @@ const displayloadbook=(books)=>{
 
      const searchresult =document.getElementById("search-result");
      searchresult.innerText="";
-
+/* error message 2 */
 
      if(books.length== 0){
          searchresult.innerText=" Sorry to say  wrong choice "
          searchresult.style.color="red";
          searchresult.style.paddingLeft="350px";
      }
+/* error message 2 end */
+
      books.forEach(book => {
-        //  console.log(book);
         const div =document.createElement("div");
         div.classList.add("col");
         const imgurl =`
