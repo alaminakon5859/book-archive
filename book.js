@@ -43,7 +43,7 @@ const displayloadbook=(books)=>{
      if(books.length== 0){
          searchresult.innerText=" Sorry to say  wrong choice "
          searchresult.style.color="red";
-         searchresult.style.paddingLeft="350px";
+         searchresult.style.paddingLeft="400px";
      }
 /* error message 2 end */
 
@@ -94,9 +94,11 @@ const displayimgdetails=(bookdetails)=>{
 
   const bookdiv =document.createElement("div");
   bookdiv.classList.add("card");
-  
+  const imgur2 =`
+  https://covers.openlibrary.org/b/id/${bookdetails.cover_i}-M.jpg
+  `
   bookdiv.innerHTML=`
-  
+      <img style="height: 350px;" src="${imgur2}" class="card-img-top" alt="...">
     <h5 class="card-title">${bookdetails.title}</h5>
      <h5>${bookdetails.publish_date}</h5>
      <h6>${bookdetails.publisher}</h6>
