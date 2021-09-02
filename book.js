@@ -4,6 +4,7 @@ const loadBook=()=>{
 
     searchfield.value="";
     
+    
     const url=`
     https://openlibrary.org/search.json?q=${searchfieldtex}   
     `;
@@ -19,6 +20,10 @@ const displayloadbook=(books)=>{
 
      const searchresult =document.getElementById("search-result");
      searchresult.innerText="";
+
+     if(books.length== 0){
+         searchresult.innerText=" Sorry to say  wrong choice "
+     }
      books.forEach(book => {
         //  console.log(book);
         const div =document.createElement("div");
@@ -43,12 +48,41 @@ const displayloadbook=(books)=>{
 
 
 const loadimgdetails=(details)=>{
+// console.log(details);
+
     const urld=`
     https://openlibrary.org/search.json?q=${details}
     `;
      fetch(urld)
      .then(res => res.json())
-     .then(data => console.log(data));
+     .then(data =>displayimgdetails(data.docs[0]));
     
 
-}
+};
+
+
+const displayimgdetails=(bookdetails)=>{
+    // console.log(bookdetails)
+ const bookdetailes =document.getElementById("book-details");
+
+ bookdetailes.textContent="";
+
+ 
+
+
+  const bookdiv =document.createElement("div");
+  bookdiv.classList.add("card");
+  
+  bookdiv.innerHTML=`
+  
+    <h5 class="card-title">${bookdetails.title}</h5>
+     <h5>${bookdetails.publish_date}</h5>
+     <h6>${bookdetails.publisher}</h6>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+  `;
+  bookdetailes.appendChild(bookdiv);
+ 
+     
+
+};
